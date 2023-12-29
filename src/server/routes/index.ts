@@ -1,7 +1,9 @@
 import { Router } from "express";
-import { teste01 } from "../../controllers/teste01";
+import { signUpController } from "../../controllers/signUpController";
 const router = Router();
 
-router.get("/", teste01);
+
+
+router.post("/users/sign-up", signUpController);
 
 export { router };
