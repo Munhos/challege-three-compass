@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const UserSignUpSchema = new Schema({
     firstName:{
@@ -26,7 +26,7 @@ const UserSignUpSchema = new Schema({
     confirmPassword:{
         type:String
     }
-})
+});
 
 const UserSignUp = mongoose.model("UserSignUp", UserSignUpSchema);
 export default UserSignUp;

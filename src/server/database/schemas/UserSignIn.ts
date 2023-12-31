@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const UserSignInSchema = new Schema({
     email:{
@@ -8,7 +8,7 @@ const UserSignInSchema = new Schema({
     password:{
         type:String
     }
-})
+});
 
 const UserSignIn = mongoose.model("UserSignIn", UserSignInSchema);
 export default UserSignIn;

@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import bcrypt from 'bcrypt';
+import { type Request, type Response } from "express";
+import bcrypt from "bcrypt";
 
 
 import UserSignUp from "../server/database/schemas/UserSignUp";
@@ -8,7 +8,8 @@ import UserSignIn from "../server/database/schemas/UserSignIn";
 export const signUpController = async (req:Request, res:Response) => {
     try{
         let {firstName, lastName, birthDate, city, coutry, email, password, confirmPassword} = req.body;
-
+        
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         if(!email){
             return res.status(400).send({
                 "type": "Validation Error",
@@ -18,9 +19,9 @@ export const signUpController = async (req:Request, res:Response) => {
                     "message": "Requires email imput"
                     }
                 ]
-            })
+            });
         }
-        if(await UserSignUp.findOne({email: req.body.email})){
+        if((await UserSignUp.findOne({email: req.body.email})) != null){
             return res.status(400).send({
                 "type": "Validation Error",
                 "errors": [
@@ -29,7 +30,7 @@ export const signUpController = async (req:Request, res:Response) => {
                     "message": "E-mail already registered"
                     }
                 ]
-            })
+            });
         }
         if(password !== confirmPassword){
             return res.status(400).send({
@@ -40,7 +41,7 @@ export const signUpController = async (req:Request, res:Response) => {
                     "message": "Different passwords"
                     }
                 ]
-            })
+            });
         }
 
         const salt = await bcrypt.genSalt(12);
@@ -56,8 +57,8 @@ export const signUpController = async (req:Request, res:Response) => {
             "statusCode": 500,
             "error": "Internal Server Error",
             "message": "Something went wrong"
-        })
+        });
     }
     
     
-}
+};

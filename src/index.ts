@@ -1,8 +1,6 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { server } from "./server/server";
 
-server.listen(process.env.PORT || 3333, () => {
-    console.log(`App rodando na porta ${process.env.PORT || 3333}`)
-})
-
-
-// DommiJ8Sv82BSCCR
+server.listen((process.env.PORT) ?? 3333, () => {
+    console.log(`App rodando na porta ${(process.env.PORT) ?? 3333}`);
+});

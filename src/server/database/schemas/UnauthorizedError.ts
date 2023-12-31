@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const UnauthorizedErrorSchema = new Schema({
     statusCode:{
@@ -11,7 +11,7 @@ const UnauthorizedErrorSchema = new Schema({
     message:{
         type:String
     }
-})
+});
 
 const UnauthorizedError = mongoose.model("UnauthorizedError", UnauthorizedErrorSchema);
 export default UnauthorizedError;

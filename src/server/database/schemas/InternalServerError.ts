@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const InternalServerErrorSchema = new Schema({
     statusCode:{
@@ -11,7 +11,7 @@ const InternalServerErrorSchema = new Schema({
     message:{
         type:String
     }
-})
+});
 
 const InternalServerError = mongoose.model("InternalServerError", InternalServerErrorSchema);
 export default InternalServerError;

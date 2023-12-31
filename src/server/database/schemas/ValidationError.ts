@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const ValidationErrorSchema = new Schema({
     type:{
@@ -8,7 +8,7 @@ const ValidationErrorSchema = new Schema({
     errors:{
         type:Array
     }
-})
+});
 
 const ValidationError = mongoose.model("ValidationError", ValidationErrorSchema);
 export default ValidationError;

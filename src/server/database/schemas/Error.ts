@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const errorSchema = new Schema({
     statusCode:{
@@ -11,7 +11,7 @@ const errorSchema = new Schema({
     message:{
         type:String
     }
-})
+});
 
 const Error = mongoose.model("Error", errorSchema);
 export default Error;

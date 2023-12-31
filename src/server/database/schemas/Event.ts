@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const EventSchema = new Schema({
     _id:{
@@ -14,7 +14,7 @@ const EventSchema = new Schema({
     userId:{
         type:String
     }
-})
+});
 
 const Event = mongoose.model("Event", EventSchema);
 export default Event;

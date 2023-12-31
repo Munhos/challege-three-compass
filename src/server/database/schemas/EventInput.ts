@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const EventInputSchema = new Schema({
     description:{
@@ -8,7 +8,7 @@ const EventInputSchema = new Schema({
     dayOfWeek:{
         type:String
     }
-})
+});
 
 const EventInput = mongoose.model("EventInput", EventInputSchema);
 export default EventInput;
