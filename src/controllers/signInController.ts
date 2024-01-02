@@ -5,6 +5,8 @@ import bcrypt from "bcrypt";
 import UserSignIn from "../server/database/schemas/UserSignIn";
 import UserSignUp from "../server/database/schemas/UserSignUp";
 
+export let valueToken:string = "";
+
 export const signInController = async (req: Request, res: Response) => {
   try {
     const user = await UserSignIn.findOne({ email: req.body.email });
@@ -21,15 +23,27 @@ export const signInController = async (req: Request, res: Response) => {
       });
     }
 
-    
+    // TOKEN
+    const secret = process.env.SECRET;
+    const token = jwt.sign(
+      {
+        _id:user._id
+      },secret
+    );
 
-    const correctPassword = await bcrypt.compare(req.body.password, user?.password ?? "");
+    valueToken = token;
+
+    const correctPassword = await bcrypt.compare(req.body.password, user.password ?? "");
     if (correctPassword) {
+
+      
+            
       const userSignUp = await UserSignUp.findOne({ email: req.body.email });
       return res.status(200).send({
         "firstName" : userSignUp?.firstName ?? "",
         "lastName" : userSignUp?.lastName ?? "",
-        "email" : userSignUp?.email ?? ""
+        "email" : userSignUp?.email ?? "",
+        "tokenName" : token
       });
       
     } else {
@@ -52,4 +66,3 @@ export const signInController = async (req: Request, res: Response) => {
     });
   }
 };
-

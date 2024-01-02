@@ -2,9 +2,6 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const EventSchema = new Schema({
-    _id:{
-        type:String
-    },
     description:{
         type:String
     },
