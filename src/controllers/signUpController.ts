@@ -1,6 +1,6 @@
 import { type Request, type Response } from "express";
 import bcrypt from "bcrypt";
-
+import { signUpValidator } from "./validator/signUpValidator";
 
 import UserSignUp from "../server/database/schemas/UserSignUp";
 import UserSignIn from "../server/database/schemas/UserSignIn";
@@ -9,6 +9,33 @@ export const signUpController = async (req:Request, res:Response) => {
     try{
         let {firstName, lastName, birthDate, city, coutry, email, password, confirmPassword} = req.body;
         
+        const { error } = signUpValidator.validate(
+            {
+                firstName,
+                lastName,
+                birthDate,
+                city,
+                coutry,
+                email,
+                password,
+                confirmPassword
+            }
+        );
+
+        if(error != null){
+            return res.send(
+                {
+                    "type": "Validation Error",
+                    "errors": [
+                      {
+                        "resource": "input",
+                        "message": "invalid input"
+                      }
+                    ]
+                  }
+            );
+        }
+
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         if(!email){
             return res.status(400).send({
