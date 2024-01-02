@@ -9,6 +9,6 @@ const router = Router();
 router.post("/users/sign-up", signUpController);
 router.post("/users/sign-in", signInController);
 
-router.post("/events", createEventsController);
+router.post("/events",checkToken, createEventsController);
 
 export { router };

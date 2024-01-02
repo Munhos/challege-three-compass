@@ -17,7 +17,12 @@ export const createEventsController = async (req:Request, res:Response) => {
         );
         
         return res.status(200).send(
-            event
+            {
+                "_id": event._id,
+                "description": event.description,
+                "dayOfWeek": event.dayOfWeek,
+                "userId": event.userId
+            }
         );
     } catch {
         return res.status(500).send({
