@@ -15,7 +15,7 @@ router.post("/users/sign-in", signInController);
 
 router.post("/events", checkToken, createEventsController);
 router.get("/events", checkToken, getAllEventsController);
-router.delete("/events", deleteEventsFromEspecificDayController);
+router.delete("/events",checkToken, deleteEventsFromEspecificDayController);
 router.get("/events/:id",checkToken, getEspecificEventController);
 router.delete("/events/:id",checkToken, deleteEspecificEventController);
 
