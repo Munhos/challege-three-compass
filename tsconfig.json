@@ -13,6 +13,6 @@
     "declaration": true,
     "noImplicitAny": false
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "custom.d.ts"],
   "exclude": ["node_modules"]
 }
