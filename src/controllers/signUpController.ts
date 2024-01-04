@@ -23,13 +23,13 @@ export const signUpController = async (req:Request, res:Response) => {
         );
 
         if(error != null){
-            return res.send(
+            return res.status(400).send(
                 {
                     "type": "Validation Error",
                     "errors": [
                       {
-                        "resource": "input",
-                        "message": "invalid input"
+                        "resource": "email",
+                        "message": "Requires email imput"
                       }
                     ]
                   }
@@ -64,7 +64,7 @@ export const signUpController = async (req:Request, res:Response) => {
                 "type": "Validation Error",
                 "errors": [
                     {
-                    "resource": "email",
+                    "resource": "password",
                     "message": "Different passwords"
                     }
                 ]

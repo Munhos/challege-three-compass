@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.02% </span>
+                <span class="strong">89.01% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>71/91</span>
+                <span class='fraction'>81/91</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">77.77% </span>
+                <span class="strong">88.88% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/9</span>
+                <span class='fraction'>8/9</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.02% </span>
+                <span class="strong">89.01% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>71/91</span>
+                <span class='fraction'>81/91</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -204,16 +204,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -225,8 +225,8 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
@@ -268,13 +268,13 @@ export const signUpController = async (req:Request, res:Response) =&gt; {
         );
 &nbsp;
         if(error != null){
-            return res.send(
+            return res.status(400).send(
                 {
                     "type": "Validation Error",
                     "errors": [
                       {
-                        "resource": "input",
-                        "message": "invalid input"
+                        "resource": "email",
+                        "message": "Requires email imput"
                       }
                     ]
                   }
@@ -293,23 +293,23 @@ export const signUpController = async (req:Request, res:Response) =&gt; {
 <span class="cstat-no" title="statement not covered" >                ]</span>
 <span class="cstat-no" title="statement not covered" >            });</span>
 <span class="cstat-no" title="statement not covered" >        }</span>
-        if((await UserSignUp.findOne({email: req.body.email})) != null)<span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(400).send({</span>
-<span class="cstat-no" title="statement not covered" >                "type": "Validation Error",</span>
-<span class="cstat-no" title="statement not covered" >                "errors": [</span>
-<span class="cstat-no" title="statement not covered" >                    {</span>
-<span class="cstat-no" title="statement not covered" >                    "resource": "email",</span>
-<span class="cstat-no" title="statement not covered" >                    "message": "E-mail already registered"</span>
-<span class="cstat-no" title="statement not covered" >                    }</span>
-<span class="cstat-no" title="statement not covered" >                ]</span>
-<span class="cstat-no" title="statement not covered" >            });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-        if(password !== confirmPassword){
+        if((await UserSignUp.findOne({email: req.body.email})) != null){
             return res.status(400).send({
                 "type": "Validation Error",
                 "errors": [
                     {
                     "resource": "email",
+                    "message": "E-mail already registered"
+                    }
+                ]
+            });
+        }
+        if(password !== confirmPassword){
+            return res.status(400).send({
+                "type": "Validation Error",
+                "errors": [
+                    {
+                    "resource": "password",
                     "message": "Different passwords"
                     }
                 ]
@@ -340,7 +340,7 @@ export const signUpController = async (req:Request, res:Response) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-01-04T18:35:34.804Z
+                at 2024-01-04T19:45:31.163Z
             </div>
         <script src="../prettify.js"></script>
         <script>

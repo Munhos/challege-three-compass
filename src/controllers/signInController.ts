@@ -34,10 +34,7 @@ export const signInController = async (req: Request, res: Response) => {
     valueToken = token;
 
     const correctPassword = await bcrypt.compare(req.body.password, user.password ?? "");
-    if (correctPassword) {
-
-      
-            
+    if (correctPassword) {    
       const userSignUp = await UserSignUp.findOne({ email: req.body.email });
       return res.status(200).send({
         "firstName" : userSignUp?.firstName ?? "",
@@ -47,7 +44,7 @@ export const signInController = async (req: Request, res: Response) => {
       });
       
     } else {
-      return res.status(400).send({
+      return res.status(404).send({
           "type": "Validation Error",
           "errors": [
               {

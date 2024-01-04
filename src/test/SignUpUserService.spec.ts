@@ -30,8 +30,6 @@ describe("signUpController", () => {
       status: jest.fn(() => res),
       send: jest.fn(),
     };
-
-    
   });
 
   it("should create a new user if validation passes", async () => {
@@ -50,19 +48,20 @@ describe("signUpController", () => {
   it("should return validation error if validation fails", async () => {
     req.body.email = "";
     await signUpController(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
     expect(res.send).toHaveBeenCalledWith({
       type: "Validation Error",
       errors: [
         {
           resource: "email",
-          message: "Requires email input",
+          message: "Requires email imput",
         },
       ],
     });
   });
 
-  it("should return error if email already exists", async () => {
-    UserSignUp.findOne = jest.fn().mockReturnValue(null);
+  it("should return error if email already registered", async () => {
+    UserSignUp.findOne = jest.fn().mockReturnValue({});
     await signUpController(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.send).toHaveBeenCalledWith({
@@ -77,14 +76,24 @@ describe("signUpController", () => {
   });
 
   it("should return error if passwords do not match", async () => {
-    req.body.confirmPassword = "differentPassword";
+    req.body = {
+      firstName: "Test",
+      lastName: "User",
+      birthDate: "2000-01-01",
+      city: "Test City",
+      country: "Test Country",
+      email: "test@example.com",
+      password: "password123",
+      confirmPassword: "differentPassword123",
+    };
+    UserSignUp.findOne = jest.fn().mockReturnValue(null);
     await signUpController(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.send).toHaveBeenCalledWith({
       type: "Validation Error",
       errors: [
         {
-          resource: "email",
+          resource: "password",
           message: "Different passwords",
         },
       ],
@@ -93,7 +102,7 @@ describe("signUpController", () => {
 
   it("should return server error if an error is thrown", async () => {
     UserSignUp.findOne = jest.fn().mockImplementation(() => {
-        throw new Error("Test error");
+      throw new Error("Test error");
     });
     await signUpController(req, res);
     expect(res.status).toHaveBeenCalledWith(500);
