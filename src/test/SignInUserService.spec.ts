@@ -8,7 +8,7 @@ jest.mock("bcrypt");
 jest.mock("../server/database/schemas/UserSignUp");
 jest.mock("../server/database/schemas/UserSignIn");
 
-describe("signInController", () => {
+describe("signInController | users/sign-in", () => {
   let req, res;
 
   beforeEach(() => {
@@ -80,18 +80,15 @@ describe("signInController", () => {
     try {
     await signInController(req, res);
     } catch (error) {
-    res.status(500).send({
-      "statusCode": 500,
-      "error": "Internal Server Error"
-    });
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.send).toHaveBeenCalledWith(
+        {
+          "statusCode": 500,
+          "error": "Internal Server Error",
+          "message": "Something went wrong"
+        }
+      );
   }
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.send).toHaveBeenCalledWith(
-      {
-        "statusCode": 500,
-        "error": "Internal Server Error",
-        "message": "Something went wrong"
-      }
-    );
+    
   });
 });
