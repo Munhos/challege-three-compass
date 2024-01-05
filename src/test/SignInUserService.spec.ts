@@ -31,14 +31,14 @@ describe("signInController | POST users/sign-in", () => {
     await signInController(req, res);
     expect(res.status).toHaveBeenCalledWith(404);
     expect(res.send).toHaveBeenCalledWith({
-        type: "Validation Error",
-        errors: [
-          {
-            resource: "email",
-            message: "Invalid email",
-          },
-        ],
-      });
+      type: "Validation Error",
+      errors: [
+        {
+          resource: "email",
+          message: "Invalid email",
+        },
+      ],
+    });
   });
 
   it("confirm if password is false", async () => {
@@ -47,14 +47,14 @@ describe("signInController | POST users/sign-in", () => {
     await signInController(req, res);
     expect(res.status).toHaveBeenCalledWith(404);
     expect(res.send).toHaveBeenCalledWith({
-        "type": "Validation Error",
-        "errors": [
-            {
-                "resource": "password",
-                "message": "Invalid password"
-            }
-        ]
-        });
+      type: "Validation Error",
+      errors: [
+        {
+          resource: "password",
+          message: "Invalid password",
+        },
+      ],
+    });
   });
 
   it("return sign in", async () => {
@@ -69,26 +69,22 @@ describe("signInController | POST users/sign-in", () => {
     await signInController(req, res);
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.send).toHaveBeenCalledWith({
-      "firstName": mockUser.firstName,
-      "lastName": mockUser.lastName,
-      "email": mockUser.email
+      firstName: mockUser.firstName,
+      lastName: mockUser.lastName,
+      email: mockUser.email,
     });
   });
 
   it("error 500", async () => {
-
     try {
-    await signInController(req, res);
+      await signInController(req, res);
     } catch (error) {
       expect(res.status).toHaveBeenCalledWith(500);
-      expect(res.send).toHaveBeenCalledWith(
-        {
-          "statusCode": 500,
-          "error": "Internal Server Error",
-          "message": "Something went wrong"
-        }
-      );
-  }
-    
+      expect(res.send).toHaveBeenCalledWith({
+        statusCode: 500,
+        error: "Internal Server Error",
+        message: "Something went wrong",
+      });
+    }
   });
 });

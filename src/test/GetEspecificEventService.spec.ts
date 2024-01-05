@@ -37,13 +37,12 @@ describe("getEspecificEvent | GET /events/:id", () => {
     try {
       await getEspecificEventController(req, res);
     } catch (error) {
-        expect(res.status).toHaveBeenCalledWith(500);
-        expect(res.send).toHaveBeenCalledWith({
-          statusCode: 500,
-          error: "Internal Server Error",
-          message: "Something went wrong",
-        });
+      expect(res.status).toHaveBeenCalledWith(500);
+      expect(res.send).toHaveBeenCalledWith({
+        statusCode: 500,
+        error: "Internal Server Error",
+        message: "Something went wrong",
+      });
     }
-    
   });
 });

@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1704430271456" clover="3.2.0">
-  <project timestamp="1704430271456" name="All files">
-    <metrics statements="264" coveredstatements="243" conditionals="18" coveredconditionals="14" methods="3" coveredmethods="3" elements="285" coveredelements="260" complexity="0" loc="264" ncloc="264" packages="3" files="7" classes="7"/>
+<coverage generated="1704440644185" clover="3.2.0">
+  <project timestamp="1704440644185" name="All files">
+    <metrics statements="281" coveredstatements="260" conditionals="20" coveredconditionals="16" methods="4" coveredmethods="4" elements="305" coveredelements="280" complexity="0" loc="281" ncloc="281" packages="3" files="8" classes="8"/>
     <package name="controllers">
-      <metrics statements="187" coveredstatements="166" conditionals="18" coveredconditionals="14" methods="3" coveredmethods="3"/>
+      <metrics statements="204" coveredstatements="183" conditionals="20" coveredconditionals="16" methods="4" coveredmethods="4"/>
+      <file name="getAllEventsController.ts" path="C:\Users\julio\Desktop\exercicios compass\challengeThree\src\controllers\getAllEventsController.ts">
+        <metrics statements="17" coveredstatements="17" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+      </file>
       <file name="getEspecificEventController.ts" path="C:\Users\julio\Desktop\exercicios compass\challengeThree\src\controllers\getEspecificEventController.ts">
         <metrics statements="29" coveredstatements="29" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
