@@ -112,4 +112,24 @@ describe("signUpController", () => {
       message: "Something went wrong",
     });
   });
+
+  it("error 500", async () => {
+
+    try {
+    await signUpController(req, res);
+    } catch (error) {
+    res.status(500).send({
+      "statusCode": 500,
+      "error": "Internal Server Error"
+    });
+  }
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.send).toHaveBeenCalledWith(
+      {
+        "statusCode": 500,
+        "error": "Internal Server Error",
+        "message": "Something went wrong"
+      }
+    );
+  });
 });
