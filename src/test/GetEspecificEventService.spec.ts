@@ -2,7 +2,7 @@ import { Request } from "jest-express/lib/request";
 import Event from "../server/database/schemas/Event";
 import { getEspecificEventController } from "../controllers/getEspecificEventController";
 
-describe("getEspecificEvent | /events/:id", () => {
+describe("getEspecificEvent | GET /events/:id", () => {
   let req, res;
   beforeEach(() => {
     req = new Request();

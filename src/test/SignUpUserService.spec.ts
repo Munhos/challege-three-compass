@@ -9,7 +9,7 @@ jest.mock("bcrypt");
 jest.mock("../server/database/schemas/UserSignUp");
 jest.mock("../server/database/schemas/UserSignIn");
 
-describe("signUpController | users/sign-up", () => {
+describe("signUpController | POST users/sign-up", () => {
   let req, res;
 
   beforeEach(() => {
